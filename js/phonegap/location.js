@@ -69,8 +69,8 @@ function getLoc()
 	if (sucessGPS==true)
 	{
 		//Forçar Barna
-		currentLonGPS = 2.169886
-		currentLatGPS = 41.390075
+		//currentLonGPS = 2.169886
+		//currentLatGPS = 41.390075
 
 		currentAccuracy = currentAccuracyGPS;
 
@@ -92,8 +92,8 @@ function getLoc()
 		if (sucessHTML5==true)
 		{
 			//Forçar Barna
-			currentLonHTML5 = 2.169886
-			currentLatHTML5 = 41.390075
+			//currentLonHTML5 = 2.169886
+			//currentLatHTML5 = 41.390075
 			
 			currentAccuracy = currentAccuracyHTML5;
 			
@@ -302,9 +302,9 @@ function stopLocationHTML5()
 
 function dibuixaUbicacio()
 {
-	alert("dibuixaUbicacio: " + currentLon);
+	//alert("dibuixaUbicacio: " + currentLon);
 	var p1 = new OpenLayers.LonLat(currentLon, currentLat);
-	alert(p1)
+	//alert(p1)
 	try {
 		if (window.map && window.map instanceof OpenLayers.Map) {
 
@@ -352,7 +352,7 @@ function dibuixaUbicacio()
 		
 	} 
 	catch (e) {
-		alert("Error en dibuixaUbicacio: " + e.toString(),e);
+		//alert("Error en dibuixaUbicacio: " + e.toString(),e);
 	}	
 	
 }
@@ -513,7 +513,7 @@ function map3()
 		}
 		catch(e)
 		{
-			alert("error: "  + e.toString())
+			//alert("error: "  + e.toString())
 		}
  	
 }
@@ -578,7 +578,7 @@ function findRoute(x, y)
             catch(Err)
             {
                 var errMsg=Err.toString();
-                alert(errMsg)
+                //alert(errMsg)
             }            
 
         },
