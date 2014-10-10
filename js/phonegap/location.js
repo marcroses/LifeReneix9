@@ -158,7 +158,6 @@ function showPosition(position)
     
     currentHeadingHTML5=position.coords.heading;
     sucessHTML5=true;
-    alert("position:" + currentLonHTML5 + ", " + currentLatHTML5);
     if (idTemporitzador==null) 
     {
 		currentAccuracy = currentAccuracyHTML5;
