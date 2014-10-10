@@ -116,14 +116,14 @@ function getLoc()
 
 function onSoc()
 {
-    alert("onsoc");
+    //alert("onsoc");
     if (navigator.geolocation)
     {
     	$.mobile.showPageLoadingMsg( 'Searching' );
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else{
-	alert("no es pot");
+	//alert("no es pot");
     }
     
 	sucessGPS=false;
@@ -158,16 +158,12 @@ function showPosition(position)
     
     currentHeadingHTML5=position.coords.heading;
     sucessHTML5=true;
-    //alert("currentHeadingHTML5:" + currentHeadingHTML5);
+    alert("position:" + currentLonHTML5 + ", " + currentLatHTML5);
     if (idTemporitzador==null) 
     {
 		currentAccuracy = currentAccuracyHTML5;
 		var p1 = new OpenLayers.LonLat(currentLonHTML5, currentLatHTML5);
 		p1.transform(new OpenLayers.Projection("EPSG:4326" ), new OpenLayers.Projection("EPSG:25831"));
-		
-		//Barna Sí	
-		//currentLon = parseFloat(p1.lon).toFixed(0);
-		//currentLat = parseFloat(p1.lat).toFixed(0);
 		
 		if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
 		//alert("showPosition - ok");
@@ -295,48 +291,6 @@ function parseTimestamp(timestamp) {
 function initLocationHTML5()
 {
 	MiraGeoHTML5();
-	//var idTemporitzadorHTML5 = setInterval("MiraGeoHTML5()",5000)	
-	
-	/*
-    watch_idHTML5 = navigator.geolocation.watchPosition(
-    
-        // Success
-        function(position){
-
-            currentLatHTML5 = position.coords.latitude
-            currentLonHTML5 = position.coords.longitude
-            currentHeadingHTML5 = position.coords.heading
-            currentSpeedHTML5 = position.coords.speed
-            currentAccuracyHTML5 = position.coords.accuracy   
-            alert("currentAccuracyHTML5: " + currentAccuracyHTML5 + "  currentHeadingHTML5:" + currentHeadingHTML5) 
-            
-            try{
-                if (parseFloat(currentLatHTML5)>0)
-                {
-                    if (parseFloat(currentAccuracyHTML5)<2500)
-                    {
-                    	sucessHTML5=true;
-                    }
-                	
-                }
-                else{
-                	sucessHTML5=false;
-                }
-            }
-            catch(err)
-            {
-                console.log(err.toString())
-            }
-        },
-        
-        // Error
-        function(error){
-        	sucessHTML5=false;
-        	//alert("error loc HTML5")
-        },
-        // Settings
-        { frequency: 1000, enableHighAccuracy: false});
-        */
 }
 
 function stopLocationHTML5()
@@ -349,9 +303,9 @@ function stopLocationHTML5()
 
 function dibuixaUbicacio()
 {
-	//alert("dibuixaUbicacio: " + currentLon);
+	alert("dibuixaUbicacio: " + currentLon);
 	var p1 = new OpenLayers.LonLat(currentLon, currentLat);
-	//alert(p1)
+	alert(p1)
 	try {
 		if (window.map && window.map instanceof OpenLayers.Map) {
 
