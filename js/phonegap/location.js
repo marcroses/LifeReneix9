@@ -116,12 +116,15 @@ function getLoc()
 
 function onSoc()
 {
-    
+    alert("onsoc");
     if (navigator.geolocation)
     {
     	$.mobile.showPageLoadingMsg( 'Searching' );
         navigator.geolocation.getCurrentPosition(showPosition);
-    }	
+    }
+    else{
+	alert("no es pot");
+    }
     
 	sucessGPS=false;
 	sucessHTML5=false;
