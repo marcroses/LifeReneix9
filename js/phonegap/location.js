@@ -161,8 +161,7 @@ function showPosition(position)
     currentLatHTML5=position.coords.latitude;
     
     currentHeadingHTML5=position.coords.heading;
-    alert(position.coords.heading);
-    
+
     sucessHTML5=true;
     if (idTemporitzador==null) 
     {
@@ -171,7 +170,6 @@ function showPosition(position)
 		p1.transform(new OpenLayers.Projection("EPSG:4326" ), new OpenLayers.Projection("EPSG:25831"));
 		
 		if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
-		alert(currentHeadingHTML5 + "  " + currentHeading);
 		ubica();    	
     }
     $.mobile.hidePageLoadingMsg( 'Searching' );
@@ -368,7 +366,18 @@ function dibuixaUbicacio()
 function ubica()
 {
     var p1 = new OpenLayers.LonLat(currentLon, currentLat);
-    dibuixaUbicacio();	
+    navigator.compass.getCurrentHeading(onSuccessCompass, onErrorCompass);    
+}
+
+function onSuccessCompass(heading)
+{
+	alert(heading.magneticHeading);
+	currentHeading = heading.magneticHeading;
+	dibuixaUbicacio();	
+}
+
+function onError(compassError) {
+        alert('Compass Error: ' + compassError.code);
 }
 
 function centerMe()
