@@ -80,7 +80,7 @@ function getLoc()
 		currentLon = parseFloat(p1.lon).toFixed(0);
 		currentLat = parseFloat(p1.lat).toFixed(0);
 		
-		alert(currentHeadingGPS);
+		//alert(currentHeadingGPS);
 
 		if (currentHeadingGPS!=null) currentHeading = parseInt(currentHeadingGPS).toFixed(0);
 		
@@ -105,7 +105,7 @@ function getLoc()
 			currentLon = parseFloat(p1.lon).toFixed(0);
 			currentLat = parseFloat(p1.lat).toFixed(0);
 			
-			alert(currentHeadingHTML5);
+			//alert(currentHeadingHTML5);
 			
 			if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
 			ubica();
@@ -161,7 +161,6 @@ function showPosition(position)
     currentLatHTML5=position.coords.latitude;
     
     currentHeadingHTML5=position.coords.heading;
-
     sucessHTML5=true;
     if (idTemporitzador==null) 
     {
@@ -170,6 +169,7 @@ function showPosition(position)
 		p1.transform(new OpenLayers.Projection("EPSG:4326" ), new OpenLayers.Projection("EPSG:25831"));
 		
 		if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
+		//alert(currentHeadingHTML5 + "  " + currentHeading);
 		ubica();    	
     }
     $.mobile.hidePageLoadingMsg( 'Searching' );
@@ -336,7 +336,7 @@ function dibuixaUbicacio()
 		    );
 		    
 		    var punt = new OpenLayers.Geometry.Point(currentLon,currentLat);
-		    alert("currentHeading: " + currentHeading + "  currentHeadingGPS: " + currentHeadingGPS + "  currentHeadingHTML5: " + currentHeadingHTML5 + " sucessGPS:" + sucessGPS + " currentAccuracy:" + currentAccuracy);
+		    //alert("currentHeading: " + currentHeading + "  currentHeadingGPS: " + currentHeadingGPS + "  currentHeadingHTML5: " + currentHeadingHTML5 + " sucessGPS:" + sucessGPS + " currentAccuracy:" + currentAccuracy);
 		    
 			mostraPosUbi();
 
@@ -366,18 +366,7 @@ function dibuixaUbicacio()
 function ubica()
 {
     var p1 = new OpenLayers.LonLat(currentLon, currentLat);
-    navigator.compass.getCurrentHeading(onSuccessCompass, onErrorCompass);    
-}
-
-function onSuccessCompass(heading)
-{
-	alert(heading.magneticHeading);
-	currentHeading = heading.magneticHeading;
-	dibuixaUbicacio();	
-}
-
-function onError(compassError) {
-        alert('Compass Error: ' + compassError.code);
+    dibuixaUbicacio();	
 }
 
 function centerMe()
