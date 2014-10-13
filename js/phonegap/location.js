@@ -79,6 +79,8 @@ function getLoc()
 
 		currentLon = parseFloat(p1.lon).toFixed(0);
 		currentLat = parseFloat(p1.lat).toFixed(0);
+		
+		alert(currentHeadingGPS);
 
 		if (currentHeadingGPS!=null) currentHeading = parseInt(currentHeadingGPS).toFixed(0);
 		
@@ -103,6 +105,8 @@ function getLoc()
 			currentLon = parseFloat(p1.lon).toFixed(0);
 			currentLat = parseFloat(p1.lat).toFixed(0);
 			
+			alert(currentHeadingHTML5);
+			
 			if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
 			ubica();
 
@@ -117,7 +121,7 @@ function getLoc()
 function onSoc()
 {
     //alert("onsoc");
-    if (navigator.geolocation)
+    if (navigator.geolocation)  
     {
     	$.mobile.showPageLoadingMsg( 'Searching' );
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -165,7 +169,7 @@ function showPosition(position)
 		p1.transform(new OpenLayers.Projection("EPSG:4326" ), new OpenLayers.Projection("EPSG:25831"));
 		
 		if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
-		//alert("showPosition - ok");
+		alert(currentHeadingHTML5 + "  " + currentHeading);
 		ubica();    	
     }
     $.mobile.hidePageLoadingMsg( 'Searching' );
@@ -332,7 +336,7 @@ function dibuixaUbicacio()
 		    );
 		    
 		    var punt = new OpenLayers.Geometry.Point(currentLon,currentLat);
-		    //alert("currentHeading: " + currentHeading + "  currentHeadingGPS: " + currentHeadingGPS + "  currentHeadingHTML5: " + currentHeadingHTML5 + " sucessGPS:" + sucessGPS + " currentAccuracy:" + currentAccuracy);
+		    alert("currentHeading: " + currentHeading + "  currentHeadingGPS: " + currentHeadingGPS + "  currentHeadingHTML5: " + currentHeadingHTML5 + " sucessGPS:" + sucessGPS + " currentAccuracy:" + currentAccuracy);
 		    
 			mostraPosUbi();
 
