@@ -161,6 +161,8 @@ function showPosition(position)
     currentLatHTML5=position.coords.latitude;
     
     currentHeadingHTML5=position.coords.heading;
+    alert(position.coords.heading);
+    
     sucessHTML5=true;
     if (idTemporitzador==null) 
     {
