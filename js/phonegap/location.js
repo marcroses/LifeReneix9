@@ -35,6 +35,7 @@ var srsCoords="ETRS89";
 
 var map3;
 var vectors3;
+var outOfMap=true;
 
 function startMonitor()
 {
@@ -313,10 +314,12 @@ function dibuixaUbicacio()
 		if (window.map && window.map instanceof OpenLayers.Map) {
 
 		    vector.removeAllFeatures();
-		    
+		    outOfMap = false;
+			
 		    if (!map.getMaxExtent().containsLonLat(new OpenLayers.LonLat(currentLon,currentLat))) {
 		    	//alert(nls.MA_GEOLOCATE_LIMITES);
 		    	document.getElementById("locDataBottom").innerHTML="&nbsp;&nbsp;" + nls.MA_GEOLOCATE_LIMITES;
+				outOfMap = true
 		    	return;
 		    }
 
@@ -527,9 +530,15 @@ function findRoute(x, y)
     var idioma="";
     if (currentIdioma=="ca") idioma="ca";
     if (currentIdioma=="es") idioma="es";
-    
-    
-    var myPos = new OpenLayers.LonLat(currentLon, currentLat);
+    var myPos = null;
+
+    if (outOfMap==false)
+	{
+		myPos = new OpenLayers.LonLat(currentLon, currentLat);
+	}
+	else{
+		myPos = new OpenLayers.LonLat(map.getCenter().lon , map.getCenter().lat);
+	}
 	myPos.transform(new OpenLayers.Projection("EPSG:25831"), new OpenLayers.Projection("EPSG:4326"));
     var currentLon4326 = myPos.lon;
     var currentLat4326 = myPos.lat;
