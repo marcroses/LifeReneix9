@@ -4,7 +4,7 @@ var sitmunProperties={"edicion.draw.default.fillColor":"#AFCFFE","edicion.featur
 
 function checkLocale() { 
      try{
-
+		  /*
           navigator.globalization.getLocaleName(
             function (locale) {
                 alert(locale.value.substr(0,2));
@@ -16,6 +16,26 @@ function checkLocale() {
                 alert('Error getting locale\n');
             }
           );
+		  */
+		  
+		navigator.globalization.getPreferredLanguage(
+			function (language) {
+				alert(language.value)
+				if(language.value == 'es'){
+					currentIdioma="es";
+				}
+				else if (language.value == 'ca'){
+					currentIdioma="ca";
+				}
+				else{
+					currentIdioma="es";
+				}
+				setIdioma(currentIdioma);
+			},
+			function () {
+				currentIdioma="es";
+				setIdioma(currentIdioma);
+			);
          
      }
      catch(Err)

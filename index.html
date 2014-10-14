@@ -34,6 +34,7 @@
 
 		<script type="text/javascript" src="js/phonegap/fastclick.js"></script>
 		<script type="text/javascript" src="js/phonegap/location.js"></script>
+		<script type="text/javascript" src="js/phonegap/network.js"></script>
 		
 		
 		<script type="text/javascript" src="flors_aux/mobile/visor.js"></script>
@@ -1249,7 +1250,26 @@
                             </ul>
                     	</div>    
             </div>
-        </div>				
+        </div>	
+
+
+        <!--
+        ===========================
+            DIALEG Error
+        ===========================
+        -->    
+        <div data-role="dialog" id="dialegError" >
+            <div data-role="header" >
+                <h1><div id="titolError">Error</div></h1>
+            </div>
+            <div data-role="content"> 
+                <center>
+                    <img src="img/wireless.png" style="max-width:90%;">
+                    <div id="txtError">No hay connexi&oacute;n a Internet</div>    
+                </center>
+                <a href="#"  data-role="button" data-theme="a" id="btnQuitError">Aceptar</a>                         
+            </div>
+        </div>  		
 		
 	</body>
 </html>

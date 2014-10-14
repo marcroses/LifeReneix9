@@ -1,5 +1,4 @@
 function main() {
-    onSoc();
 	document.addEventListener("deviceready", aplicacionIniciada, false); // Al inciar la app
 	document.addEventListener("pause", aplicacionPausada, false);        // Al pausar la app
 	document.addEventListener("resume", aplicacionReiniciada, false);    // Al reiniciar la app
@@ -11,8 +10,17 @@ function main() {
 
 function aplicacionIniciada()
 {
-	FastClick.attach(document.body);
-	setTimeout(fixContentHeight,2000);
+	checkLocale();
+    if (checkConnection()=="none")
+    {
+        $.mobile.changePage("#dialegError");
+    }    
+    else{
+		onSoc();
+		FastClick.attach(document.body);
+		setTimeout(fixContentHeight,2000);
+		
+    }
 	document.addEventListener("backbutton", atrasPulsado, false);
 }
 
