@@ -5,7 +5,7 @@ var coordsMapa = null;
  */
 $(document).ready(function () {
 
-});
+}); 
 
 /**
  * Refem el heigh en canviar orientaci� de m�bil.

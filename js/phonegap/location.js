@@ -563,7 +563,7 @@ function findRoute(x, y)
             document.getElementById("contentKMLTravelTime").innerHTML = kmlTraveltime;
             var kmlDescription =  $(xml).find('description').text();
             var kmlCoordinates =  $(xml).find('coordinates').text();
-            
+             
             try
             {
                 vectors3.destroyFeatures();
