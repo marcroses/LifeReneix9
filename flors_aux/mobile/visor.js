@@ -10,8 +10,8 @@ $(document).ready(function () {
 /**
  * Refem el heigh en canviar orientaci� de m�bil.
  */
-//$(window).bind("orientationchange resize", fixContentHeight);
-//$(window).bind("orientationchange resize pageshow", fixContentHeight);
+$(window).bind("orientationchange resize", fixContentHeight);
+$(window).bind("orientationchange resize pageshow", fixContentHeight);
 
 //$("#mainContainer").on( "pagechange", function( event ) {
 /*$(document).bind('pagechange', function() {
