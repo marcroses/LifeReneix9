@@ -43,7 +43,7 @@ $(document).on ('pageinit', '#searchpageOferta', function (event) {
 $(document).on("openLayerMap_loaded", function () {
 	//activamos capa de getFeatureInfo
 	try{
-		checkLocale();	
+		//checkLocale();	
 		getFeatureInfoLayer.activate();	
 	}
 	catch(Err)

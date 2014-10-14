@@ -10,11 +10,13 @@ function main() {
 
 function aplicacionIniciada()
 {
+	alert(checkConnection());
     if (checkConnection()=="none")
     {
         $.mobile.changePage("#dialegError");
     }    
     else{
+		checkLocale();
 		onSoc();
 		FastClick.attach(document.body);
 		setTimeout(fixContentHeight,2000);
