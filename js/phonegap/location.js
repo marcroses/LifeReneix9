@@ -35,7 +35,6 @@ var srsCoords="ETRS89";
 
 var map3;
 var vectors3;
-var outOfMap=true;
 
 function startMonitor()
 {
@@ -70,8 +69,8 @@ function getLoc()
 	if (sucessGPS==true)
 	{
 		//Forçar Barna
-		//currentLonGPS = 2.169886
-		//currentLatGPS = 41.390075
+		currentLonGPS = 2.169886
+		currentLatGPS = 41.390075
 
 		currentAccuracy = currentAccuracyGPS;
 
@@ -80,8 +79,6 @@ function getLoc()
 
 		currentLon = parseFloat(p1.lon).toFixed(0);
 		currentLat = parseFloat(p1.lat).toFixed(0);
-		
-		//alert(currentHeadingGPS);
 
 		if (currentHeadingGPS!=null) currentHeading = parseInt(currentHeadingGPS).toFixed(0);
 		
@@ -95,8 +92,8 @@ function getLoc()
 		if (sucessHTML5==true)
 		{
 			//Forçar Barna
-			//currentLonHTML5 = 2.169886
-			//currentLatHTML5 = 41.390075
+			currentLonHTML5 = 2.169886
+			currentLatHTML5 = 41.390075
 			
 			currentAccuracy = currentAccuracyHTML5;
 			
@@ -105,8 +102,6 @@ function getLoc()
 			
 			currentLon = parseFloat(p1.lon).toFixed(0);
 			currentLat = parseFloat(p1.lat).toFixed(0);
-			
-			//alert(currentHeadingHTML5);
 			
 			if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
 			ubica();
@@ -121,14 +116,14 @@ function getLoc()
 
 function onSoc()
 {
-    //alert("onsoc");
-    if (navigator.geolocation)  
+    alert("onsoc");
+    if (navigator.geolocation)
     {
     	$.mobile.showPageLoadingMsg( 'Searching' );
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else{
-	//alert("no es pot");
+	alert("no es pot");
     }
     
 	sucessGPS=false;
@@ -163,14 +158,19 @@ function showPosition(position)
     
     currentHeadingHTML5=position.coords.heading;
     sucessHTML5=true;
+    //alert("currentHeadingHTML5:" + currentHeadingHTML5);
     if (idTemporitzador==null) 
     {
 		currentAccuracy = currentAccuracyHTML5;
 		var p1 = new OpenLayers.LonLat(currentLonHTML5, currentLatHTML5);
 		p1.transform(new OpenLayers.Projection("EPSG:4326" ), new OpenLayers.Projection("EPSG:25831"));
 		
+		//Barna Sí	
+		//currentLon = parseFloat(p1.lon).toFixed(0);
+		//currentLat = parseFloat(p1.lat).toFixed(0);
+		
 		if (currentHeadingHTML5!=null) currentHeading = parseInt(currentHeadingHTML5).toFixed(0);
-		//alert(currentHeadingHTML5 + "  " + currentHeading);
+		//alert("showPosition - ok");
 		ubica();    	
     }
     $.mobile.hidePageLoadingMsg( 'Searching' );
@@ -295,6 +295,48 @@ function parseTimestamp(timestamp) {
 function initLocationHTML5()
 {
 	MiraGeoHTML5();
+	//var idTemporitzadorHTML5 = setInterval("MiraGeoHTML5()",5000)	
+	
+	/*
+    watch_idHTML5 = navigator.geolocation.watchPosition(
+    
+        // Success
+        function(position){
+
+            currentLatHTML5 = position.coords.latitude
+            currentLonHTML5 = position.coords.longitude
+            currentHeadingHTML5 = position.coords.heading
+            currentSpeedHTML5 = position.coords.speed
+            currentAccuracyHTML5 = position.coords.accuracy   
+            alert("currentAccuracyHTML5: " + currentAccuracyHTML5 + "  currentHeadingHTML5:" + currentHeadingHTML5) 
+            
+            try{
+                if (parseFloat(currentLatHTML5)>0)
+                {
+                    if (parseFloat(currentAccuracyHTML5)<2500)
+                    {
+                    	sucessHTML5=true;
+                    }
+                	
+                }
+                else{
+                	sucessHTML5=false;
+                }
+            }
+            catch(err)
+            {
+                console.log(err.toString())
+            }
+        },
+        
+        // Error
+        function(error){
+        	sucessHTML5=false;
+        	//alert("error loc HTML5")
+        },
+        // Settings
+        { frequency: 1000, enableHighAccuracy: false});
+        */
 }
 
 function stopLocationHTML5()
@@ -314,12 +356,10 @@ function dibuixaUbicacio()
 		if (window.map && window.map instanceof OpenLayers.Map) {
 
 		    vector.removeAllFeatures();
-		    outOfMap = false;
-			
+		    
 		    if (!map.getMaxExtent().containsLonLat(new OpenLayers.LonLat(currentLon,currentLat))) {
 		    	//alert(nls.MA_GEOLOCATE_LIMITES);
 		    	document.getElementById("locDataBottom").innerHTML="&nbsp;&nbsp;" + nls.MA_GEOLOCATE_LIMITES;
-				outOfMap = true
 		    	return;
 		    }
 
@@ -359,7 +399,7 @@ function dibuixaUbicacio()
 		
 	} 
 	catch (e) {
-		//alert("Error en dibuixaUbicacio: " + e.toString(),e);
+		alert("Error en dibuixaUbicacio: " + e.toString(),e);
 	}	
 	
 }
@@ -520,7 +560,7 @@ function map3()
 		}
 		catch(e)
 		{
-			//alert("error: "  + e.toString())
+			alert("error: "  + e.toString())
 		}
  	
 }
@@ -530,15 +570,9 @@ function findRoute(x, y)
     var idioma="";
     if (currentIdioma=="ca") idioma="ca";
     if (currentIdioma=="es") idioma="es";
-    var myPos = null;
-
-    if (outOfMap==false)
-	{
-		myPos = new OpenLayers.LonLat(currentLon, currentLat);
-	}
-	else{
-		myPos = new OpenLayers.LonLat(map.getCenter().lon , map.getCenter().lat);
-	}
+    
+    
+    var myPos = new OpenLayers.LonLat(currentLon, currentLat);
 	myPos.transform(new OpenLayers.Projection("EPSG:25831"), new OpenLayers.Projection("EPSG:4326"));
     var currentLon4326 = myPos.lon;
     var currentLat4326 = myPos.lat;
@@ -591,7 +625,7 @@ function findRoute(x, y)
             catch(Err)
             {
                 var errMsg=Err.toString();
-                //alert(errMsg)
+                alert(errMsg)
             }            
 
         },

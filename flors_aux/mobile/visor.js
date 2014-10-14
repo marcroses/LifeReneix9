@@ -5,13 +5,13 @@ var coordsMapa = null;
  */
 $(document).ready(function () {
 
-}); 
+});
 
 /**
  * Refem el heigh en canviar orientaci� de m�bil.
  */
-$(window).bind("orientationchange resize", fixContentHeight);
-$(window).bind("orientationchange resize pageshow", fixContentHeight);
+//$(window).bind("orientationchange resize", fixContentHeight);
+//$(window).bind("orientationchange resize pageshow", fixContentHeight);
 
 //$("#mainContainer").on( "pagechange", function( event ) {
 /*$(document).bind('pagechange', function() {
@@ -25,43 +25,37 @@ $(window).bind("orientationchange resize pageshow", fixContentHeight);
 */
 function fixContentHeight() {
 	
-    if (checkConnection()=="none")
-    {
-        $.mobile.changePage("#dialegError");
-    }    
-    else{
+    document.getElementById('mapCanvas3').style.height = (parseInt(window.innerHeight) -190) + 'px';
+    document.getElementById('mapCanvas3').style.width = (window.innerWidth - 70) + 'px';    
 
-		document.getElementById('mapCanvas3').style.height = (parseInt(window.innerHeight) -190) + 'px';
-		document.getElementById('mapCanvas3').style.width = (window.innerWidth - 70) + 'px';    
-
-		var header = $("div[data-role='header']:visible"),
-			footer = $("div[data-role='footer']:visible"),
-			content = $("div[data-role='content']:visible:visible"),
-			viewHeight = $(window).height(),
-			contentHeight = viewHeight - footer.outerHeight() - header.outerHeight();
-		
-		console.log("viewHeight:"+viewHeight+" contentHeight:"+contentHeight);
-		
-		if ((content.outerHeight() + footer.outerHeight() + header.outerHeight()) !== viewHeight) {
-			contentHeight -= (content.outerHeight() - content.height() + 1);
-			console.log("new contentHeight:"+contentHeight);
-			content.height(contentHeight);
-		}
-		
-		//lanzamos un evento de resize para todos los elementos que se tengan que redimensionar puedan hacerlo
-		console.log("lanzamos evento personalizado 'resizeContentHeight' para adaptar las medidad de los contenidos que lo necesiten.");
-		var medidas = getMedidas();
-		$(document).trigger("resizeContentHeight", medidas);
-		
-		if (window.map && window.map instanceof OpenLayers.Map) {
-			map.updateSize();
-			map3.updateSize();
-		} else {
-			//Inicialitzacio del mapa amb timeOut ja que a vegades no te temps de renderitzar tota la pagina
-			//i OpenLayers te problemes en recuperar el height del mapa
-			mapInit();
-		}	
-	}	
+	var header = $("div[data-role='header']:visible"),
+		footer = $("div[data-role='footer']:visible"),
+	  	content = $("div[data-role='content']:visible:visible"),
+	  	viewHeight = $(window).height(),
+	  	contentHeight = viewHeight - footer.outerHeight() - header.outerHeight();
+	
+	console.log("viewHeight:"+viewHeight+" contentHeight:"+contentHeight);
+	
+	if ((content.outerHeight() + footer.outerHeight() + header.outerHeight()) !== viewHeight) {
+		contentHeight -= (content.outerHeight() - content.height() + 1);
+		console.log("new contentHeight:"+contentHeight);
+		content.height(contentHeight);
+	}
+	
+  	//lanzamos un evento de resize para todos los elementos que se tengan que redimensionar puedan hacerlo
+	console.log("lanzamos evento personalizado 'resizeContentHeight' para adaptar las medidad de los contenidos que lo necesiten.");
+	var medidas = getMedidas();
+	$(document).trigger("resizeContentHeight", medidas);
+	
+	if (window.map && window.map instanceof OpenLayers.Map) {
+		map.updateSize();
+	} else {
+		//Inicialitzacio del mapa amb timeOut ja que a vegades no te temps de renderitzar tota la pagina
+		//i OpenLayers te problemes en recuperar el height del mapa
+		mapInit();
+	}
+	
+	
 }
 
 /**
