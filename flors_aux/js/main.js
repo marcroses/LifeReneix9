@@ -10,7 +10,7 @@ function main() {
 
 function aplicacionIniciada()
 {
-	//alert(checkConnection());
+	alert(checkConnection());
     if (checkConnection()=="none")
     {
         $.mobile.changePage("#dialegError");
