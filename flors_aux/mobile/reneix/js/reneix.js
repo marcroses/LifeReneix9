@@ -48,7 +48,7 @@ $(document).on("openLayerMap_loaded", function () {
 	}
 	catch(Err)
 	{
-		alert(Err.toString());
+		//alert(Err.toString());
 	}
 	
 });
@@ -341,13 +341,13 @@ function searchAdrecaGeneric(locId,value,listviewId,targetPageId) {
 					$(listviewId).listview("refresh");
 				}
 			}else{
-				alert("Error carregant dades.");
+				//alert("Error carregant dades.");
 			}
 			$.mobile.hidePageLoadingMsg( 'Searching' );
 		},
 		error: function(data) {
 			//En caso de error mostramos una ventan a de error.
-			alert("Error carregant dades: "+data.responseText);
+			//alert("Error carregant dades: "+data.responseText);
 			$.mobile.hidePageLoadingMsg( 'Searching' );
 		}
 	});
@@ -389,14 +389,14 @@ function initInformacio() {
 						});
 					}
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				//$.mobile.hidePageLoadingMsg( 'Searching' );
 
 			},
 			error: function(data) {
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});
@@ -459,14 +459,14 @@ function infoSearch(idConsultaCand,idConsultaDetall, tipologia) {
 						listview.listview("refresh");
 					}
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			},
 			error: function(data) {
 				console.log("infoSearch error",data);
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});
@@ -497,7 +497,7 @@ function infoCandidato(detallid, poiid, tipologia){
 	console.log("init del infoCandidato");
 	if (typeof(detallid)=="undefined") {
 		// capa que no te configurada una fitxa.
-		alert(nls.MA_SENSE_DADES);
+		//alert(nls.MA_SENSE_DADES);
 		return;
 	}
 	
@@ -522,7 +522,7 @@ function infoCandidato(detallid, poiid, tipologia){
 						//TIPOLOGIA RUTAS, mostramos una info totalmente separada
 						if (typeof(item)=="undefined") {
 							// capa que no te configurada una fitxa.
-							alert(nls.MA_SENSE_DADES);
+							//alert(nls.MA_SENSE_DADES);
 						} else if(tipologia=='RUTA'){
 							$("#infoFitxaRUTAImg").css("display", "inline");
 							$("#infoFitxaRUTAImg").one('error', function() {  this.style.display = 'none'; });
@@ -812,13 +812,13 @@ function infoCandidato(detallid, poiid, tipologia){
 						}						
 					}
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			},
 			error: function(data) {
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});
@@ -884,7 +884,7 @@ function fn_Especie(valor)
 					$("#infoFitxaRUTAEspecies2").scrollTop(0);
 					listview.listview("refresh");
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				$.mobile.hidePageLoadingMsg( 'Searching' );			
 			
@@ -892,7 +892,7 @@ function fn_Especie(valor)
 			},
 			error: function(data) {
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});
@@ -947,13 +947,13 @@ function mostrarFotosCand(Id, tipologia){
 					}
 				}
 			}else{
-				alert("Error carregant dades.");
+				//alert("Error carregant dades.");
 			}
 			$.mobile.hidePageLoadingMsg( 'Searching' );
 		},
 		error: function(data) {
 			//En caso de error mostramos una ventan a de error.
-			alert("Error carregant dades: "+data.responseText);
+			//alert("Error carregant dades: "+data.responseText);
 			$.mobile.hidePageLoadingMsg( 'Searching' );
 		}
 	});
@@ -1160,13 +1160,13 @@ function marcarCarrer(value){
 					var item=data.data[0];
 					addMarkerCarrer(item.THE_GEOM);						
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			},
 			error: function(data) {
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});
@@ -1221,13 +1221,13 @@ function buscarHabitats(idRuta){
 					$("#infoFitxaRUTAHabitats").scrollTop(0);
 					listview.listview("refresh");
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			},
 			error: function(data) {
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});
@@ -1286,13 +1286,13 @@ function buscarEspecies(idRuta){
 					$("#infoFitxaRUTAEspecies").scrollTop(0);
 					listview.listview("refresh");
 				}else{
-					alert("Error carregant dades.");
+					//alert("Error carregant dades.");
 				}
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			},
 			error: function(data) {
 				//En caso de error mostramos una ventan a de error.
-				alert("Error carregant dades: "+data.responseText);
+				//alert("Error carregant dades: "+data.responseText);
 				$.mobile.hidePageLoadingMsg( 'Searching' );
 			}
 		});

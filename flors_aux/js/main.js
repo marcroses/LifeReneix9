@@ -10,7 +10,6 @@ function main() {
 
 function aplicacionIniciada()
 {
-	checkLocale();
     if (checkConnection()=="none")
     {
         $.mobile.changePage("#dialegError");
