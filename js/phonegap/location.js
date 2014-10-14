@@ -411,11 +411,11 @@ function mostraPosUbi()
 	    
 		if (currentIdioma=="es")
 		{
-			document.getElementById("locDataBottom").innerHTML="<b>&nbsp;Ubicaci&oacute;n</b> X:" + myPosLon + ", Y:" + myPosLat + "; Buf: " + parseInt(currentAccuracy).toFixed(0) + " m.;  Rumbo:" + cHlbl;	
+			document.getElementById("locDataBottom").innerHTML="<b>&nbsp;Ubicaci&oacute;n</b> X:" + myPosLon + ", Y:" + myPosLat + "; Buf: " + parseInt(currentAccuracy).toFixed(0) + " m.";	
 		}
 		if (currentIdioma=="ca")
 		{
-			document.getElementById("locDataBottom").innerHTML="<b>&nbsp;Ubicaci&oacute;</b> X:" + myPosLon + ", Y:" + myPosLat + "; Buf: " + parseInt(currentAccuracy).toFixed(0) + " m.;  Rumb:" + cHlbl;	
+			document.getElementById("locDataBottom").innerHTML="<b>&nbsp;Ubicaci&oacute;</b> X:" + myPosLon + ", Y:" + myPosLat + "; Buf: " + parseInt(currentAccuracy).toFixed(0) + " m.";	
 		}
 }
 
@@ -582,11 +582,40 @@ function findRoute(x, y)
                     {}
                 }
 
+				var style = { 
+				  strokeColor: '#ff0000', 
+				  strokeOpacity: 0.8,
+				  strokeWidth: 5
+				};				
+
                 var feature = new OpenLayers.Feature.Vector(
-                        new OpenLayers.Geometry.LineString(matCoord)
+                        new OpenLayers.Geometry.LineString(matCoord),
+						null,
+						style
                 );
-                vectors3.addFeatures(feature);
-                map3.zoomToExtent(feature.geometry.getBounds(), closest=true);
+
+				var style_Ini = OpenLayers.Util.extend({}, OpenLayers.Feature.Vector.style['default']);
+				style_Ini.graphicWidth = 32;
+				style_Ini.graphicHeight = 32;
+				style_Ini.graphicXOffset = -16; // default is -(style_mark.graphicWidth/2);
+				style_Ini.graphicYOffset = -style_Ini.graphicHeight;
+				style_Ini.externalGraphic = "http://maps.google.com/mapfiles/kml/paddle/A.png";	
+				style_Ini.fillOpacity=1;
+
+				var style_Fi = OpenLayers.Util.extend({}, OpenLayers.Feature.Vector.style['default']);
+				style_Fi.graphicWidth = 32;
+				style_Fi.graphicHeight = 32;
+				style_Fi.graphicXOffset = -16; // default is -(style_mark.graphicWidth/2);
+				style_Fi.graphicYOffset = -style_Fi.graphicHeight;
+				style_Fi.externalGraphic = "http://maps.google.com/mapfiles/kml/paddle/B.png";	
+				style_Fi.fillOpacity=1;
+				
+				var pointIniFeature = new OpenLayers.Feature.Vector(matCoord[0],null,style_Ini);				
+				var pointFiFeature = new OpenLayers.Feature.Vector(matCoord[matCoord.length-1],null,style_Fi);				
+				
+				vectors3.addFeatures([feature,pointIniFeature,pointFiFeature]);
+				
+                map3.zoomToExtent(feature.geometry.getBounds(), closest=false);
             }
             catch(Err)
             {
