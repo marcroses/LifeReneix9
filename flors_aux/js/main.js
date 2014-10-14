@@ -16,7 +16,7 @@ function aplicacionIniciada()
         $.mobile.changePage("#dialegError");
     }    
     else{
-		checkLocale();
+		//checkLocale();
 		onSoc();
 		FastClick.attach(document.body);
 		setTimeout(fixContentHeight,2000);
