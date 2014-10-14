@@ -49,6 +49,7 @@ function fixContentHeight() {
 	
 	if (window.map && window.map instanceof OpenLayers.Map) {
 		map.updateSize();
+		map3.updateSize();
 	} else {
 		//Inicialitzacio del mapa amb timeOut ja que a vegades no te temps de renderitzar tota la pagina
 		//i OpenLayers te problemes en recuperar el height del mapa
