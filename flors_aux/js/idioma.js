@@ -4,8 +4,8 @@ var sitmunProperties={"edicion.draw.default.fillColor":"#AFCFFE","edicion.featur
 
 function checkLocale() { 
      try{
-		  /*
-          navigator.globalization.getLocaleName(
+		  
+          navigator.globalization.getPreferredLanguage(
             function (locale) {
                 alert(locale.value.substr(0,2));
                 currentIdioma="es";
@@ -16,8 +16,9 @@ function checkLocale() {
                 alert('Error getting locale\n');
             }
           );
-		  */
 		  
+		
+		/*
 		navigator.globalization.getPreferredLanguage(
 			function (language) {
 				alert(language.value)
@@ -36,7 +37,7 @@ function checkLocale() {
 				currentIdioma="es";
 				setIdioma(currentIdioma);
 			);
-         
+        */ 
      }
      catch(Err)
      {}
