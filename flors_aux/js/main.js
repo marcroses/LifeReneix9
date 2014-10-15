@@ -12,6 +12,7 @@ function main() {
 function aplicacionIniciada()
 {
 	FastClick.attach(document.body);
+	checkLocale();
 	setTimeout(fixContentHeight,2000);
 	document.addEventListener("backbutton", atrasPulsado, false);
 }

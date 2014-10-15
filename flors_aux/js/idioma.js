@@ -4,7 +4,6 @@ var sitmunProperties={"edicion.draw.default.fillColor":"#AFCFFE","edicion.featur
 
 function checkLocale() {
      try{
-
           navigator.globalization.getPreferredLanguage(
             function (locale) {
                 alert(locale.value.substr(0,2));
@@ -13,7 +12,7 @@ function checkLocale() {
                 setIdioma(currentIdioma);
             },
             function () {
-                //alert('Error getting locale\n');
+                alert('Error getting locale\n');
             }
           );
          
