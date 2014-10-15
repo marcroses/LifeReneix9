@@ -7,7 +7,7 @@ function checkLocale() {
 
           navigator.globalization.getPreferredLanguage(
             function (locale) {
-                //alert(locale.value.substr(0,2));
+                alert(locale.value.substr(0,2));
                 currentIdioma="es";
                 if (locale.value.substr(0,2)=="ca") currentIdioma="ca";
                 setIdioma(currentIdioma);
