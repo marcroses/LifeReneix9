@@ -4,7 +4,8 @@ var coordsMapa = null;
  * Accions a realitzar quan el doc estigui carregat.
  */
 $(document).ready(function () {
-
+                  StatusBar.overlaysWebView( true );
+                  StatusBar.backgroundColorByName( "gray" );
 });
 
 /**
@@ -24,7 +25,8 @@ $(window).bind("orientationchange resize pageshow", fixContentHeight);
 * Ajusta el height del content perque OL ho ocupi tot.
 */
 function fixContentHeight() {
-	
+
+    
     document.getElementById('mapCanvas3').style.height = (parseInt(window.innerHeight) -190) + 'px';
     document.getElementById('mapCanvas3').style.width = (window.innerWidth - 70) + 'px';    
 
